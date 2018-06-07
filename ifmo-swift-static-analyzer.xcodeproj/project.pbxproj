@@ -59,7 +59,7 @@
 		7572FD3820C94D45008D77AD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				7572FD3F20C96033008D77AD /* TreeWalker */,
+				7572FD3F20C96033008D77AD /* FileWalker */,
 				7572FD3120C933F3008D77AD /* Linter.swift */,
 			);
 			path = Core;
@@ -82,13 +82,13 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
-		7572FD3F20C96033008D77AD /* TreeWalker */ = {
+		7572FD3F20C96033008D77AD /* FileWalker */ = {
 			isa = PBXGroup;
 			children = (
 				7572FD3B20C95E73008D77AD /* FileTreeWalker.swift */,
 				7572FD3D20C95FB1008D77AD /* SwiftFileTreeWalker.swift */,
 			);
-			path = TreeWalker;
+			path = FileWalker;
 			sourceTree = "<group>";
 		};
 		75FCF22420C92419000AB0B1 = {

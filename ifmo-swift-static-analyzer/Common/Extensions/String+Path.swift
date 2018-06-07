@@ -20,5 +20,30 @@
  * THE SOFTWARE.
  */
 
-let linter = Linter()
-linter.run()
+import Foundation
+
+extension String {
+
+    var fileURL: URL {
+        return URL(fileURLWithPath: self)
+    }
+
+    var pathExtension: String {
+        return fileURL.pathExtension
+    }
+
+    var lastPathComponent: String {
+        return fileURL.lastPathComponent
+    }
+
+    func stringByAppendingPathComponent(path: String) -> String {
+        let nsSt = self as NSString
+        return nsSt.appendingPathComponent(path)
+    }
+
+    var standardizingPath: String {
+        let nsSt = self as NSString
+        return nsSt.standardizingPath
+    }
+
+}

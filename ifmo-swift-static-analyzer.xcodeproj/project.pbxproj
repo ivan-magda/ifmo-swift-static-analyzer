@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7572FD3220C933F3008D77AD /* Linter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3120C933F3008D77AD /* Linter.swift */; };
+		7572FD3520C939D5008D77AD /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3420C939D5008D77AD /* String+Path.swift */; };
+		7572FD3720C94108008D77AD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3620C94108008D77AD /* Stack.swift */; };
 		75FCF23120C92419000AB0B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FCF23020C92419000AB0B1 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7572FD3120C933F3008D77AD /* Linter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Linter.swift; sourceTree = "<group>"; };
+		7572FD3420C939D5008D77AD /* String+Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
+		7572FD3620C94108008D77AD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		75FCF22D20C92419000AB0B1 /* ifmo-swift-static-analyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ifmo-swift-static-analyzer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FCF23020C92419000AB0B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +44,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7572FD3320C939B1008D77AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7572FD3420C939D5008D77AD /* String+Path.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7572FD3820C94D45008D77AD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7572FD3120C933F3008D77AD /* Linter.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7572FD3920C94D71008D77AD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7572FD3320C939B1008D77AD /* Extensions */,
+				7572FD3A20C94DA6008D77AD /* Collections */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7572FD3A20C94DA6008D77AD /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				7572FD3620C94108008D77AD /* Stack.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
 		75FCF22420C92419000AB0B1 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				75FCF23020C92419000AB0B1 /* main.swift */,
+				7572FD3920C94D71008D77AD /* Common */,
+				7572FD3820C94D45008D77AD /* Core */,
 			);
 			path = "ifmo-swift-static-analyzer";
 			sourceTree = "<group>";
@@ -94,6 +135,7 @@
 				TargetAttributes = {
 					75FCF22C20C92419000AB0B1 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -119,7 +161,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7572FD3720C94108008D77AD /* Stack.swift in Sources */,
+				7572FD3220C933F3008D77AD /* Linter.swift in Sources */,
 				75FCF23120C92419000AB0B1 /* main.swift in Sources */,
+				7572FD3520C939D5008D77AD /* String+Path.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +290,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6UNHY8UY6E;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -255,7 +300,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6UNHY8UY6E;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

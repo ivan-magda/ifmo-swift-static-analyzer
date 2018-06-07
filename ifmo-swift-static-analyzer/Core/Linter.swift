@@ -25,13 +25,23 @@ import Foundation
 /// "Print lint warnings and errors for the Swift files in the current directory".
 final class Linter {
 
-    private let fileManager = FileManager.default
+    // MARK: Instance Variables
+
+    private let path: String
+    private let fileManager: FileManager
+
+    // MARK: Init
+
+    init(path: String, fileManager: FileManager = FileManager.default) {
+        self.path = path
+        self.fileManager = fileManager
+    }
 
     // MARK: Public API
 
     func run() {
         print("Finding Swift files in current directory...\n")
-        let files = findSwiftFiles(in: "/Users/ivanmagda/prog/projects/ifmo-swift-static-analyzer")
+        let files = findSwiftFiles(at: path)
         for (index, file) in files.enumerated() {
             print("Linting '\(file.lastPathComponent)' (\(index + 1)/\(files.count))\n")
         }
@@ -46,9 +56,9 @@ final class Linter {
             .filter { !$0.isGitSpecificFile }
     }
 
-    private func findSwiftFiles(in directory: String) -> [String] {
+    private func findSwiftFiles(at path: String) -> [String] {
         do {
-            var stack = try Stack(array: subpaths(at: directory))
+            var stack = try Stack(array: subpaths(at: path))
             var swiftFiles = [String]()
 
             while !stack.isEmpty {

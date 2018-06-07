@@ -20,5 +20,5 @@
  * THE SOFTWARE.
  */
 
-let linter = Linter()
+let linter = Linter(path: "/Users/ivanmagda/prog/projects/ifmo-swift-static-analyzer")
 linter.run()

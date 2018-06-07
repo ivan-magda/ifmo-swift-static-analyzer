@@ -20,5 +20,6 @@
  * THE SOFTWARE.
  */
 
-let linter = Linter(path: "/Users/ivanmagda/prog/projects/ifmo-swift-static-analyzer")
+let rootPath = "/Users/ivanmagda/prog/projects/ifmo-swift-static-analyzer"
+let linter = Linter(fileTreeWalker: SwiftFileTreeWalker(path: rootPath))
 linter.run()

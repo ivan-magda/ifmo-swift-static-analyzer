@@ -10,6 +10,8 @@
 		7572FD3220C933F3008D77AD /* Linter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3120C933F3008D77AD /* Linter.swift */; };
 		7572FD3520C939D5008D77AD /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3420C939D5008D77AD /* String+Path.swift */; };
 		7572FD3720C94108008D77AD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3620C94108008D77AD /* Stack.swift */; };
+		7572FD3C20C95E73008D77AD /* FileTreeWalker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3B20C95E73008D77AD /* FileTreeWalker.swift */; };
+		7572FD3E20C95FB1008D77AD /* SwiftFileTreeWalker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FD3D20C95FB1008D77AD /* SwiftFileTreeWalker.swift */; };
 		75FCF23120C92419000AB0B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FCF23020C92419000AB0B1 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		7572FD3120C933F3008D77AD /* Linter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Linter.swift; sourceTree = "<group>"; };
 		7572FD3420C939D5008D77AD /* String+Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		7572FD3620C94108008D77AD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		7572FD3B20C95E73008D77AD /* FileTreeWalker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTreeWalker.swift; sourceTree = "<group>"; };
+		7572FD3D20C95FB1008D77AD /* SwiftFileTreeWalker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFileTreeWalker.swift; sourceTree = "<group>"; };
 		75FCF22D20C92419000AB0B1 /* ifmo-swift-static-analyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ifmo-swift-static-analyzer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FCF23020C92419000AB0B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +59,7 @@
 		7572FD3820C94D45008D77AD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7572FD3F20C96033008D77AD /* TreeWalker */,
 				7572FD3120C933F3008D77AD /* Linter.swift */,
 			);
 			path = Core;
@@ -75,6 +80,15 @@
 				7572FD3620C94108008D77AD /* Stack.swift */,
 			);
 			path = Collections;
+			sourceTree = "<group>";
+		};
+		7572FD3F20C96033008D77AD /* TreeWalker */ = {
+			isa = PBXGroup;
+			children = (
+				7572FD3B20C95E73008D77AD /* FileTreeWalker.swift */,
+				7572FD3D20C95FB1008D77AD /* SwiftFileTreeWalker.swift */,
+			);
+			path = TreeWalker;
 			sourceTree = "<group>";
 		};
 		75FCF22420C92419000AB0B1 = {
@@ -161,6 +175,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7572FD3C20C95E73008D77AD /* FileTreeWalker.swift in Sources */,
+				7572FD3E20C95FB1008D77AD /* SwiftFileTreeWalker.swift in Sources */,
 				7572FD3720C94108008D77AD /* Stack.swift in Sources */,
 				7572FD3220C933F3008D77AD /* Linter.swift in Sources */,
 				75FCF23120C92419000AB0B1 /* main.swift in Sources */,

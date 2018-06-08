@@ -4,7 +4,7 @@
 
 ***SwiftLinter*** is a tool, that helps to enforce Swift style and conventions, based on [GitHub's Swift Style Guide](https://github.com/github/swift-style-guide).
 
-***Supported Rules***
+**Supported Rules**:
 
 - **Line length** should be 100 characters or less.
 - **Leading whitespace** file shouldn't start with whitespace.

@@ -20,7 +20,7 @@ extension File {
             .filter({ $0.content.count > 100 })
             .map {
                 return StyleViolation(
-                    type: .Length,
+                    type: .length,
                     location: Location(file: self.path, line: $0.index),
                     reason: "Line #\($0.index) should be 100 characters or less: " +
                             "currently \($0.content.count) characters"
@@ -33,7 +33,7 @@ extension File {
 
         if countOfLeadingWhitespace != 0 {
             return [StyleViolation(
-                type: .LeadingWhitespace,
+                type: .leadingWhitespace,
                 location: Location(file: self.path, line: 1),
                 reason: "File shouldn't start with whitespace: " +
                         "currently starts with \(countOfLeadingWhitespace) whitespace characters"
@@ -64,7 +64,7 @@ extension File {
                 }
 
                 return StyleViolation(
-                    type: .ForceCast,
+                    type: .forceCast,
                     location: Location(file: self, offset: offset),
                     reason: "Force casts should be avoided"
                 )
@@ -86,7 +86,7 @@ extension File {
                 $0.trailingWhitespaceCount > 0
             }.map {
                 StyleViolation(
-                    type: .TrailingWhitespace,
+                    type: .trailingWhitespace,
                     location: Location(file: self.path, line: $0.index),
                     reason: "Line #\($0.index) should have no trailing whitespace: " +
                             "current has \($0.trailingWhitespaceCount) trailing whitespace characters"
@@ -100,7 +100,7 @@ extension File {
         if countOfTrailingNewlines != 1 {
             return [
                 StyleViolation(
-                    type: .TrailingNewline,
+                    type: .trailingNewline,
                     location: Location(file: self.path),
                     reason: "File should have a single trailing newline: " +
                             "currently has \(countOfTrailingNewlines)"
@@ -115,7 +115,7 @@ extension File {
         if lines.count > 400 {
             return [
                 StyleViolation(
-                    type: .Length,
+                    type: .length,
                     location: Location(file: self.path),
                     reason: "File should contain 400 lines or less: currently contains \(lines.count)"
                 )

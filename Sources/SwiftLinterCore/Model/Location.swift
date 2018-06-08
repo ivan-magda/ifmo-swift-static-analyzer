@@ -23,7 +23,7 @@
 import Foundation
 import SourceKittenFramework
 
-public struct Location: CustomStringConvertible, Equatable {
+struct Location: CustomStringConvertible, Equatable {
 
     public let file: String?
     public let line: Int?
@@ -45,7 +45,7 @@ public struct Location: CustomStringConvertible, Equatable {
         self.file = file.path
         if let lineAndCharacter = file.contents.lineAndCharacterForByteOffset(offset: offset) {
             line = lineAndCharacter.line
-            character = nil // FIXME: Use lineAndCharacter.character once it works.
+            character = nil
         } else {
             line = nil
             character = nil

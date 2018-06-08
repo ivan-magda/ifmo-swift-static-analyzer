@@ -24,29 +24,29 @@ import Foundation
 
 public enum ViolationSeverity: Int, CustomStringConvertible, Comparable {
 
-    case VeryLow
-    case Low
-    case Medium
-    case High
-    case VeryHigh
+    case veryLow
+    case low
+    case medium
+    case high
+    case veryHigh
 
     public var description: String {
         switch self {
-        case .VeryLow:
+        case .veryLow:
             return "Very Low"
-        case .Low:
+        case .low:
             return "Low"
-        case .Medium:
+        case .medium:
             return "Medium"
-        case .High:
+        case .high:
             return "High"
-        case .VeryHigh:
+        case .veryHigh:
             return "Very High"
         }
     }
 
     public var xcodeSeverityDescription: String {
-        return self <= ViolationSeverity.Medium ? "warning" : "error"
+        return self <= ViolationSeverity.medium ? "warning" : "error"
     }
 
     // MARK: Comparable

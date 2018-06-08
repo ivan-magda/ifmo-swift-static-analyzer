@@ -24,12 +24,12 @@ import Foundation
 
 public enum StyleViolationType: String, CustomStringConvertible {
 
-    case NameFormat         = "Name Format"
-    case Length             = "Length"
-    case TrailingNewline    = "Trailing Newline"
-    case LeadingWhitespace  = "Leading Whitespace"
-    case TrailingWhitespace = "Trailing Whitespace"
-    case ForceCast          = "Force Cast"
+    case nameFormat         = "Name Format"
+    case length             = "Length"
+    case trailingNewline    = "Trailing Newline"
+    case leadingWhitespace  = "Leading Whitespace"
+    case trailingWhitespace = "Trailing Whitespace"
+    case forceCast          = "Force Cast"
 
     public var description: String {
         return rawValue

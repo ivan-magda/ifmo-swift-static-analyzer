@@ -30,7 +30,6 @@ struct StyleViolation: CustomStringConvertible, Equatable {
     public let reason: String?
 
     public var description: String {
-        // {full_path_to_file}{:line}{:character}: {error,warning}: {content}
         return "\(location): " +
             "\(severity.xcodeSeverityDescription): " +
             "\(type) Violation (\(severity) Severity): " +
@@ -38,7 +37,7 @@ struct StyleViolation: CustomStringConvertible, Equatable {
     }
 
     public init(type: StyleViolationType, location: Location, reason: String? = nil) {
-        severity = .Low
+        severity = .low
         self.type = type
         self.location = location
         self.reason = reason

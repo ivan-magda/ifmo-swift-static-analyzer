@@ -23,12 +23,46 @@
 import Foundation
 import SourceKittenFramework
 
-typealias LintIteratorCallback = (_ index: Int, _ file: File, _ violation: StyleViolation) -> Swift.Void
+final class LintFacade {
 
-protocol LintIterator {
+    private let fileWalker: FileTreeWalker
 
-    var fileWalker: FileTreeWalker { get }
+    init(_ fileWalker: FileTreeWalker) {
+        self.fileWalker = fileWalker
+    }
 
-    func lint(onViolation violation: LintIteratorCallback)
+    func lint() throws {
+        print("Finding Swift files at path \(fileWalker.path) ...")
 
+        let countFiles = fileWalker.count
+        var numberOfViolations = 0
+
+        for (index, path) in fileWalker.iterator.enumerated() {
+            guard let file = File(path: path) else {
+                throw Error.failedToOpenFile
+            }
+
+            print("Linting '\(file.path!.lastPathComponent)' (\(index + 1)/\(countFiles))")
+
+            for styleViolation in Linter(file: file).stringViolations {
+                print(styleViolation)
+                numberOfViolations += 1
+            }
+        }
+
+        print(
+            "Done linting! Found \(numberOfViolations) violation" +
+                (numberOfViolations != 1 ? "s" : "") +
+                " in \(countFiles) file" + (countFiles != 1 ? "s." : ".")
+        )
+    }
+
+}
+
+// MARK: - LintFacade (Error) -
+
+extension LintFacade {
+    enum Error: Swift.Error {
+        case failedToOpenFile
+    }
 }

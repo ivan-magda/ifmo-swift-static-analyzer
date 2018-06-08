@@ -21,6 +21,7 @@
  */
 
 import Foundation
+import SourceKittenFramework
 
 /// "Print lint warnings and errors for the Swift files in the current directory".
 final class Linter {
@@ -31,6 +32,11 @@ final class Linter {
 
     // MARK: Init
 
+    /**
+     Initialize a Linter by passing in a FileTreeWalker.
+
+     :param: fileTreeWalker Searches for files to lint.
+     */
     init(fileTreeWalker: FileTreeWalker) {
         self.fileTreeWalker = fileTreeWalker
     }
@@ -39,9 +45,38 @@ final class Linter {
 
     func lint() throws {
         print("Finding Swift files at path \(fileTreeWalker.path) ...")
+
+        let countOfFiles = fileTreeWalker.count
+        var numberOfViolations = 0
+
         for (index, file) in fileTreeWalker.iterator.enumerated() {
-            print("Linting '\(file.lastPathComponent)' (\(index + 1)/\(fileTreeWalker.count))")
+            print("Linting '\(file.lastPathComponent)' (\(index + 1)/\(countOfFiles))")
+            for violation in stringViolations(for: File(path: file)!) {
+                print(violation)
+                numberOfViolations += 1
+            }
         }
+
+        print(
+            "Done linting! Found \(numberOfViolations) violation" +
+                (numberOfViolations != 1 ? "s" : "") +
+                " in \(countOfFiles) file" + (countOfFiles != 1 ? "s." : ".")
+        )
+    }
+
+    // MARK: Private API
+
+    private func stringViolations(for file: File) -> [StyleViolation] {
+        let lines = file.contents.lines()
+
+        var violations = file.lineLengthViolations(lines: lines)
+        violations.append(contentsOf: file.leadingWhitespaceViolations(contents: file.contents))
+        violations.append(contentsOf: file.trailingLineWhitespaceViolations(lines: lines))
+        violations.append(contentsOf: file.trailingNewlineViolations(contents: file.contents))
+        violations.append(contentsOf: file.forceCastViolations(file: file))
+        violations.append(contentsOf: file.fileLengthViolations(lines: lines))
+
+        return violations
     }
 
 }

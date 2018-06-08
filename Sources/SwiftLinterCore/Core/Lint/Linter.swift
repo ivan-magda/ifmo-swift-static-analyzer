@@ -24,49 +24,26 @@ import Foundation
 import SourceKittenFramework
 
 /// "Print lint warnings and errors for the Swift files in the current directory".
-final class Linter {
+struct Linter {
 
     // MARK: Instance Variables
 
-    private let fileTreeWalker: FileTreeWalker
+    private let file: File
 
     // MARK: Init
 
     /**
-     Initialize a Linter by passing in a FileTreeWalker.
+     Initialize a Linter by passing in a File.
 
-     :param: fileTreeWalker Searches for files to lint.
+     :param: file File to lint.
      */
-    init(fileTreeWalker: FileTreeWalker) {
-        self.fileTreeWalker = fileTreeWalker
+    public init(file: File) {
+        self.file = file
     }
 
     // MARK: Public API
 
-    func lint() throws {
-        print("Finding Swift files at path \(fileTreeWalker.path) ...")
-
-        let countOfFiles = fileTreeWalker.count
-        var numberOfViolations = 0
-
-        for (index, file) in fileTreeWalker.iterator.enumerated() {
-            print("Linting '\(file.lastPathComponent)' (\(index + 1)/\(countOfFiles))")
-            for violation in stringViolations(for: File(path: file)!) {
-                print(violation)
-                numberOfViolations += 1
-            }
-        }
-
-        print(
-            "Done linting! Found \(numberOfViolations) violation" +
-                (numberOfViolations != 1 ? "s" : "") +
-                " in \(countOfFiles) file" + (countOfFiles != 1 ? "s." : ".")
-        )
-    }
-
-    // MARK: Private API
-
-    private func stringViolations(for file: File) -> [StyleViolation] {
+    var stringViolations: [StyleViolation] {
         let lines = file.contents.lines()
 
         var violations = file.lineLengthViolations(lines: lines)

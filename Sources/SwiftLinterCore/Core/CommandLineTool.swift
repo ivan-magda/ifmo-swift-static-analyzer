@@ -21,6 +21,7 @@
  */
 
 import Foundation
+import SourceKittenFramework
 
 // MARK: CommandLineTool
 
@@ -47,15 +48,26 @@ public final class CommandLineTool {
             ? arguments[1]
             : FileManager.default.currentDirectoryPath
 
-        let linter = Linter(
-            fileTreeWalker: SwiftFileTreeWalker(path: directoryName)
-        )
+        let walker: FileTreeWalker = SwiftFileTreeWalker(path: directoryName)
+        let lintIterator: LintIterator = LintIteratorImplementation(fileWalker: walker)
 
-        do {
-            try linter.lint()
-        } catch {
-            throw Error.failedToLintFiles
+        print("Finding Swift files at path \(walker.path) ...")
+
+        let countFiles = walker.count
+        var numberOfViolations = 0
+
+        lintIterator.lint { index, file, violation in
+            print("Linting '\(file.path!.lastPathComponent)' (\(index + 1)/\(countFiles))")
+            print(violation)
+
+            numberOfViolations += 1
         }
+
+        print(
+            "Done linting! Found \(numberOfViolations) violation" +
+                (numberOfViolations != 1 ? "s" : "") +
+                " in \(countFiles) file" + (countFiles != 1 ? "s." : ".")
+        )
     }
 
 }

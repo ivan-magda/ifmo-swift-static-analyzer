@@ -20,6 +20,24 @@
  * THE SOFTWARE.
  */
 
-let rootPath = "/Users/ivanmagda/prog/projects/ifmo-swift-static-analyzer"
-let linter = Linter(fileTreeWalker: SwiftFileTreeWalker(path: rootPath))
-linter.run()
+import Foundation
+
+extension NSString {
+    public func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
+        return byteRangeToNSRange(start: offset, length: 0).flatMap { range in
+            var numberOfLines = 0
+            var index = 0
+            var lineRangeStart = 0
+            while index < length {
+                numberOfLines += 1
+                if index <= range.location {
+                    lineRangeStart = numberOfLines
+                    index = NSMaxRange(self.lineRange(for: NSRange(location: index, length: 1)))
+                } else {
+                    break
+                }
+            }
+            return (lineRangeStart, 0)
+        }
+    }
+}

@@ -39,7 +39,11 @@ final class SwiftFileTreeWalker: FileTreeWalker {
     }
 
     private var stackOfFiles: Stack<String> {
-        return Stack(array: findSwiftFiles(at: path))
+        do {
+            return try Stack(array: findSwiftFiles(at: path))
+        } catch {
+            return Stack()
+        }
     }
 
     // MARK: Init
@@ -51,31 +55,26 @@ final class SwiftFileTreeWalker: FileTreeWalker {
 
     // MARK: Private API
 
-    private func findSwiftFiles(at path: String) -> [String] {
-        do {
-            var stack = try Stack(array: subpaths(at: path))
-            var swiftFiles = [String]()
+    private func findSwiftFiles(at path: String) throws -> [String] {
+        var stack = try Stack(array: subpaths(at: path))
+        var swiftFiles = [String]()
 
-            while !stack.isEmpty {
-                let subPath = stack.pop()!
-                var isDir: ObjCBool = false
+        while !stack.isEmpty {
+            let subPath = stack.pop()!
+            var isDir: ObjCBool = false
 
-                if fileManager.fileExists(atPath: subPath, isDirectory: &isDir) {
-                    if isDir.boolValue {
-                        try stack.pushAll(subpaths(at: subPath))
-                    } else {
-                        if subPath.isSwiftFile {
-                            swiftFiles.append(subPath)
-                        }
+            if fileManager.fileExists(atPath: subPath, isDirectory: &isDir) {
+                if isDir.boolValue {
+                    try stack.pushAll(subpaths(at: subPath))
+                } else {
+                    if subPath.isSwiftFile {
+                        swiftFiles.append(subPath)
                     }
                 }
             }
-
-            return swiftFiles
-        } catch {
-            print(error)
-            return []
         }
+
+        return swiftFiles
     }
 
     private func subpaths(at path: String) throws -> [String] {
@@ -98,5 +97,5 @@ fileprivate extension String {
     var isGitSpecificFile: Bool {
         return self.lastPathComponent.hasPrefix(".git")
     }
-
+    
 }

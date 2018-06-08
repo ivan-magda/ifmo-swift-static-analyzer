@@ -22,26 +22,17 @@
 
 import Foundation
 
-/// "Print lint warnings and errors for the Swift files in the current directory".
-final class Linter {
+public enum StyleViolationType: String, CustomStringConvertible {
 
-    // MARK: Instance Variables
+    case NameFormat         = "Name Format"
+    case Length             = "Length"
+    case TrailingNewline    = "Trailing Newline"
+    case LeadingWhitespace  = "Leading Whitespace"
+    case TrailingWhitespace = "Trailing Whitespace"
+    case ForceCast          = "Force Cast"
 
-    private let fileTreeWalker: FileTreeWalker
-
-    // MARK: Init
-
-    init(fileTreeWalker: FileTreeWalker) {
-        self.fileTreeWalker = fileTreeWalker
-    }
-
-    // MARK: Public API
-
-    func run() {
-        print("Finding Swift files in current directory...\n")
-        for (index, file) in fileTreeWalker.iterator.enumerated() {
-            print("Linting '\(file.lastPathComponent)' (\(index + 1)/\(fileTreeWalker.count))\n")
-        }
+    public var description: String {
+        return rawValue
     }
 
 }

@@ -51,4 +51,4 @@ $ SwiftLinter {YOUR_PATH}
 
 ## Screen Shot
 
-![SwiftLinter](https://www.dropbox.com/s/dhvyhdbcbbyh9xz/SwiftLinter.png?dl=1)
+![SwiftLinter](https://www.dropbox.com/s/dcdjtrfe4llqp0j/SwiftLinter.png?dl=1)

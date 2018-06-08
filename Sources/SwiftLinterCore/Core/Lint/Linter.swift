@@ -24,7 +24,7 @@ import Foundation
 import SourceKittenFramework
 
 /// "Print lint warnings and errors for the Swift files in the current directory".
-struct Linter {
+public struct Linter {
 
     // MARK: Instance Variables
 
@@ -43,7 +43,7 @@ struct Linter {
 
     // MARK: Public API
 
-    var stringViolations: [StyleViolation] {
+    public var stringViolations: [StyleViolation] {
         let lines = file.contents.lines()
 
         var violations = file.lineLengthViolations(lines: lines)

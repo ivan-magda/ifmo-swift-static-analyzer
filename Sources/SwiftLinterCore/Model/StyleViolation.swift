@@ -22,7 +22,7 @@
 
 import Foundation
 
-struct StyleViolation: CustomStringConvertible, Equatable {
+public struct StyleViolation: CustomStringConvertible, Equatable {
 
     public let type: StyleViolationType
     public let severity: ViolationSeverity

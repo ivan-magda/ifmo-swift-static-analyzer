@@ -28,11 +28,12 @@ struct LintIteratorImplementation: LintIterator {
     let fileWalker: FileTreeWalker
 
     func lint(onViolation violation: LintIteratorCallback) {
-        for (index, file) in fileWalker.iterator.enumerated() {
-            guard let file = File(path: file) else { continue }
-            let linter = Linter(file: file)
+        for (index, path) in fileWalker.iterator.enumerated() {
+            guard let file = File(path: path) else {
+                print("Failed to open file at path: \(path)"); continue
+            }
             
-            for styleViolation in linter.stringViolations {
+            for styleViolation in Linter(file: file).stringViolations {
                 violation(index, file, styleViolation)
             }
         }

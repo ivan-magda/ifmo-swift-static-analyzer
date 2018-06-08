@@ -23,7 +23,7 @@
 import Foundation
 import SourceKittenFramework
 
-struct Location: CustomStringConvertible, Equatable {
+public struct Location: CustomStringConvertible, Equatable {
 
     public let file: String?
     public let line: Int?

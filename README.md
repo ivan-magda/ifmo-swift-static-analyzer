@@ -1,1 +1,1 @@
-# ifmo-swift-static-analyzer
+# Swift Static Analyzer
